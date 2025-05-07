@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "EnquiryManagement";
+    Layout = "~/Views/shared/Common_Admin_Layout.cshtml";
+}
+
+@using Demo20.Models;
+@model IEnumerable<EnquiryMaster>
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10 table-responsive border mt-4 mb-4" style="background-color: #ebf4fa">
+        <h2 class="text-center text-primary card-header pt-2">Enquiry Management</h2><hr />
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Enquiry_Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile_No</th>
+                <th>Message</th>
+                <th>Enquiry_DT</th>
+            </tr>
+            @{
+                foreach (EnquiryMaster em in Model)
+                {
+                    
+                     <tr>
+                          <td>@em.Enquiry_Id</td>
+                          <td>@em.Name</td>
+                          <td>@em.Email</td>
+                          <td>@em.Mobile_No</td>
+                          <td>@em.Message</td>
+                          <td>@em.Enquiry_DT</td>
+                     </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+

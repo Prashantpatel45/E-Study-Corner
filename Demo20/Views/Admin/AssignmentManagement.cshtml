@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "AssignmentManagement";
+    Layout = "~/Views/shared/Common_Admin_Layout.cshtml";
+}
+@using Demo20.Models;
+@model IEnumerable<UploadAssignmentMaster>
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10 table-responsive border mt-4 mb-4" style="background-color: #ebf4fa">
+        <h2 class="text-center text-primary pt-2">View Assignment</h2><hr />
+        <table class="table table-primary">
+            <tr>
+                <th>Upload_Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>FileName</th>
+                <th>Upload_DT</th>
+                <th>Uploaded_By</th>
+            </tr>
+            @{
+                foreach (UploadAssignmentMaster am in Model)
+                {
+                    <tr>
+                        <td>@am.Upload_Id</td>
+                        <td>@am.Title</td>
+                        <td>@am.Description</td>
+                        <td>@am.FileName</td>
+                        <td>@am.Upload_DT</td>
+                        <td>@am.Uploaded_By</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+

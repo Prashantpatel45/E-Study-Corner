@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/shared/Common_Admin_Layout.cshtml";
+}
+<style>
+    #hov {
+        transition: all 1.0s;
+    }
+    #hov:hover {
+        transform: scale(1.1);
+        box-shadow: 2px 2px 8px 3px;
+    }
+</style>
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10" style="padding-top: 40px; padding-bottom: 40px;">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color:antiquewhite;padding-top:20px;padding-bottom:20px; border-radius:20px;">
+                        <a href="/Admin/StudentManagement" class="fa-solid fa-users myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                        <span style="font-size:20px;">Student Management</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color:antiquewhite;padding-top:20px;padding-bottom:20px; border-radius:20px;" ">
+                        <a href="/Admin/UploadAssignment" class="fa-solid fa-file-arrow-up myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                        <span style="font-size:20px;">Upload Assignment</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color:antiquewhite;padding-top:20px;padding-bottom:20px;border-radius:20px;" ">
+                        <a href="/Admin/StudyMaterials" class="fa-solid fa-book myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                        <span style="font-size:20px;">Study Materials</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+        </div>
+        <!---second row-->
+        <div class="row" style="margin-top:25px;">
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color:antiquewhite;padding-top:20px;padding-bottom:20px; border-radius:20px;" ">
+                        <a href="/Admin/DownloadTasks" class="fa-solid fa-file-arrow-down myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                        <span style="font-size:20px;">Download Tasks</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color:antiquewhite;padding-top:20px;padding-bottom:20px; border-radius:20px;" ">
+                        <a href="/Admin/NotificationManagement" class="fa-solid fa-bell myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                        <span style="font-size:20px;">NotificationManagement</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color:antiquewhite;padding-top:20px;padding-bottom:20px; border-radius:20px;" ">
+                        <a href="/Admin/SendEmail" class="fa-regular fa-envelope myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                        <span style="font-size:20px;">Send Email</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+        </div>
+        <!---third row-->
+        <div class="row" style="margin-top:25px;">
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color:antiquewhite;padding-top:20px;padding-bottom:20px; border-radius:20px;" ">
+                        <a href="/Admin/FeedbackManagement" class="fa-regular fa-comment-dots" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                        <span style="font-size:20px;">Feedback Management</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color:antiquewhite;padding-top:20px;padding-bottom:20px; border-radius:20px;" ">
+                        <a href="/Admin/ChangePassword" class="fa-solid fa-unlock-keyhole myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                        <span style="font-size:20px;">Change Password</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color:antiquewhite;padding-top:20px;padding-bottom:20px;border-radius:20px;" ">
+                        <a href="/Admin/Logout" class="fa-solid fa-arrow-right-from-bracket myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                        <span style="font-size:20px;">Logout</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+        </div>
+        <!---third row end--->
+    </div>
+</div>
+</div>

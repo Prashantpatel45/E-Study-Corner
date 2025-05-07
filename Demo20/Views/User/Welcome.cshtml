@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/shared/Common_User_Layout.cshtml";
+}
+<style>
+    #hov {
+        transition: all 1.0s;
+    }
+
+    #hov:hover {
+        transform: scale(1.1);
+        box-shadow: 2px 2px 8px 3px;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10" style="background-color: #ebf4fa; padding-top: 40px; padding-bottom: 40px; ">
+        <div class="row pb-3">
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color:antiquewhite;padding-top:20px;padding-bottom:20px; border-radius:20px; ">
+                        <a href="/User/Welcome" class="fa-solid fa-house myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                            <span style="font-size:20px;">Deshboard</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color: antiquewhite; padding-top: 20px; padding-bottom: 20px; border-radius: 20px;">
+                        <a href="/User/ViewAssignment" class="fa-solid fa-expand myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                            <span style="font-size:20px;">ViewAssignment</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color: antiquewhite; padding-top: 20px; padding-bottom: 20px; border-radius: 20px;">
+                        <a href="/User/DownloadStudyMaterial" class="fa-solid fa-book myicons" style="font-size: 100px; text-decoration: none;">
+                        </a><br />
+                            <span style="font-size:20px;">DownloadStudyMaterial</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+        </div>
+        <!---second row-->
+        <div class="row pb-3" style="margin-top:25px;">
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color: antiquewhite; padding-top: 20px; padding-bottom: 20px; border-radius: 20px; ">
+                        <a href="/User/UploadAssignment" class="fa-solid fa-file-arrow-up myicons" style="font-size: 100px; text-decoration: none;">
+                        </a><br />
+                            <span style="font-size:20px;">UploadAssignment</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color: antiquewhite; padding-top: 20px; padding-bottom: 20px; border-radius: 20px; ">
+                        <a href="/User/Feedback" class="fa-regular fa-comment myicons" style="font-size: 100px; text-decoration: none;">
+                        </a><br />
+                            <span style="font-size:20px;">Feedback</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color: antiquewhite; padding-top: 20px; padding-bottom: 20px; border-radius: 20px; ">
+                        <a href="/User/MyProfile" class="fa-solid fa-address-card myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                            <span style="font-size:20px;">MyProfile</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+        </div>
+        <!---third row-->
+        <div class="row" style="margin-top:25px;">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color: antiquewhite; padding-top: 20px; padding-bottom: 20px; border-radius: 20px; ">
+                        <a href="/User/ChangePassword" class="fa-solid fa-unlock-keyhole myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                        <span style="font-size:20px;">ChangePassword</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-9 text-center" id="hov" style="background-color: antiquewhite; padding-top: 20px; padding-bottom: 20px; border-radius: 20px; ">
+                        <a href="/User/Logout" class="fa-solid fa-arrow-right-from-bracket myicons" style="font-size:100px;text-decoration:none;">
+                        </a><br />
+                        <span style="font-size:20px;">Logout</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+

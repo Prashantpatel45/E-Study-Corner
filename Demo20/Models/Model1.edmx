@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EStudyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminAssignmentMaster">
+          <Key>
+            <PropertyRef Name="Upload_Id" />
+          </Key>
+          <Property Name="Upload_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="150" />
+          <Property Name="Description" Type="varchar" MaxLength="400" />
+          <Property Name="FileName" Type="varchar" MaxLength="200" />
+          <Property Name="Upload_DT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EnquiryMaster">
+          <Key>
+            <PropertyRef Name="Enquiry_Id" />
+          </Key>
+          <Property Name="Enquiry_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="Mobile_No" Type="varchar" MaxLength="15" />
+          <Property Name="Message" Type="varchar(max)" />
+          <Property Name="Enquiry_DT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FeedbackMaster">
+          <Key>
+            <PropertyRef Name="Feedback_Id" />
+          </Key>
+          <Property Name="Feedback_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Topic" Type="varchar" MaxLength="100" />
+          <Property Name="Message" Type="varchar" MaxLength="300" />
+          <Property Name="UserId" Type="varchar" MaxLength="150" />
+          <Property Name="Feedback_DT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LoginMaster">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="EmailId" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Pass" Type="varchar" MaxLength="360" />
+          <Property Name="Utype" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="NotificationMaster">
+          <Key>
+            <PropertyRef Name="Notification_Id" />
+          </Key>
+          <Property Name="Notification_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Noti_Message" Type="varchar" MaxLength="150" />
+          <Property Name="Noti_Dt" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="StudyMaster">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="DOB" Type="varchar" MaxLength="160" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="EmailId" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CollegeName" Type="varchar" MaxLength="200" />
+          <Property Name="Course" Type="varchar" MaxLength="15" />
+          <Property Name="Yearofcourse" Type="int" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="20" />
+          <Property Name="UserPic" Type="varchar" MaxLength="300" />
+          <Property Name="Address" Type="varchar" MaxLength="400" />
+          <Property Name="Registered_On" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UploadAssignmentMaster">
+          <Key>
+            <PropertyRef Name="Upload_Id" />
+          </Key>
+          <Property Name="Upload_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="150" />
+          <Property Name="Description" Type="varchar" MaxLength="400" />
+          <Property Name="FileName" Type="varchar" MaxLength="200" />
+          <Property Name="Upload_DT" Type="datetime" />
+          <Property Name="Uploaded_By" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UploadStudyMaterial">
+          <Key>
+            <PropertyRef Name="Materail_Id" />
+          </Key>
+          <Property Name="Materail_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="70" />
+          <Property Name="Title" Type="varchar" MaxLength="150" />
+          <Property Name="Description" Type="varchar" MaxLength="400" />
+          <Property Name="FileName" Type="varchar" MaxLength="200" />
+          <Property Name="Upload_DT" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_FeedbackMaster_StudyMaster">
+          <End Role="StudyMaster" Type="Self.StudyMaster" Multiplicity="0..1" />
+          <End Role="FeedbackMaster" Type="Self.FeedbackMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyMaster">
+              <PropertyRef Name="EmailId" />
+            </Principal>
+            <Dependent Role="FeedbackMaster">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UploadAssignmentMaster_StudyMaster">
+          <End Role="StudyMaster" Type="Self.StudyMaster" Multiplicity="1" />
+          <End Role="UploadAssignmentMaster" Type="Self.UploadAssignmentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyMaster">
+              <PropertyRef Name="EmailId" />
+            </Principal>
+            <Dependent Role="UploadAssignmentMaster">
+              <PropertyRef Name="Uploaded_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EStudyDBModelStoreContainer">
+          <EntitySet Name="AdminAssignmentMaster" EntityType="Self.AdminAssignmentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnquiryMaster" EntityType="Self.EnquiryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeedbackMaster" EntityType="Self.FeedbackMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginMaster" EntityType="Self.LoginMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationMaster" EntityType="Self.NotificationMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudyMaster" EntityType="Self.StudyMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UploadAssignmentMaster" EntityType="Self.UploadAssignmentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UploadStudyMaterial" EntityType="Self.UploadStudyMaterial" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FeedbackMaster_StudyMaster" Association="Self.FK_FeedbackMaster_StudyMaster">
+            <End Role="StudyMaster" EntitySet="StudyMaster" />
+            <End Role="FeedbackMaster" EntitySet="FeedbackMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UploadAssignmentMaster_StudyMaster" Association="Self.FK_UploadAssignmentMaster_StudyMaster">
+            <End Role="StudyMaster" EntitySet="StudyMaster" />
+            <End Role="UploadAssignmentMaster" EntitySet="UploadAssignmentMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EStudyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EnquiryMaster">
+          <Key>
+            <PropertyRef Name="Enquiry_Id" />
+          </Key>
+          <Property Name="Enquiry_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile_No" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Enquiry_DT" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="FeedbackMaster">
+          <Key>
+            <PropertyRef Name="Feedback_Id" />
+          </Key>
+          <Property Name="Feedback_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Topic" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Feedback_DT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="StudyMaster" Relationship="Self.FK_FeedbackMaster_StudyMaster" FromRole="FeedbackMaster" ToRole="StudyMaster" />
+        </EntityType>
+        <EntityType Name="LoginMaster">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="EmailId" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="360" FixedLength="false" Unicode="false" />
+          <Property Name="Utype" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="NotificationMaster">
+          <Key>
+            <PropertyRef Name="Notification_Id" />
+          </Key>
+          <Property Name="Notification_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Noti_Message" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Noti_Dt" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StudyMaster">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="String" MaxLength="160" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CollegeName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Course" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Yearofcourse" Type="Int32" />
+          <Property Name="MobileNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserPic" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Registered_On" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FeedbackMasters" Relationship="Self.FK_FeedbackMaster_StudyMaster" FromRole="StudyMaster" ToRole="FeedbackMaster" />
+          <NavigationProperty Name="UploadAssignmentMasters" Relationship="Self.FK_UploadAssignmentMaster_StudyMaster" FromRole="StudyMaster" ToRole="UploadAssignmentMaster" />
+        </EntityType>
+        <EntityType Name="UploadAssignmentMaster">
+          <Key>
+            <PropertyRef Name="Upload_Id" />
+          </Key>
+          <Property Name="Upload_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="FileName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Upload_DT" Type="DateTime" Precision="3" />
+          <Property Name="Uploaded_By" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="StudyMaster" Relationship="Self.FK_UploadAssignmentMaster_StudyMaster" FromRole="UploadAssignmentMaster" ToRole="StudyMaster" />
+        </EntityType>
+        <Association Name="FK_FeedbackMaster_StudyMaster">
+          <End Role="StudyMaster" Type="Self.StudyMaster" Multiplicity="0..1" />
+          <End Role="FeedbackMaster" Type="Self.FeedbackMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyMaster">
+              <PropertyRef Name="EmailId" />
+            </Principal>
+            <Dependent Role="FeedbackMaster">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UploadAssignmentMaster_StudyMaster">
+          <End Role="StudyMaster" Type="Self.StudyMaster" Multiplicity="1" />
+          <End Role="UploadAssignmentMaster" Type="Self.UploadAssignmentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyMaster">
+              <PropertyRef Name="EmailId" />
+            </Principal>
+            <Dependent Role="UploadAssignmentMaster">
+              <PropertyRef Name="Uploaded_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EStudyDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EnquiryMasters" EntityType="Self.EnquiryMaster" />
+          <EntitySet Name="FeedbackMasters" EntityType="Self.FeedbackMaster" />
+          <EntitySet Name="LoginMasters" EntityType="Self.LoginMaster" />
+          <EntitySet Name="NotificationMasters" EntityType="Self.NotificationMaster" />
+          <EntitySet Name="StudyMasters" EntityType="Self.StudyMaster" />
+          <EntitySet Name="UploadAssignmentMasters" EntityType="Self.UploadAssignmentMaster" />
+          <AssociationSet Name="FK_FeedbackMaster_StudyMaster" Association="Self.FK_FeedbackMaster_StudyMaster">
+            <End Role="StudyMaster" EntitySet="StudyMasters" />
+            <End Role="FeedbackMaster" EntitySet="FeedbackMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UploadAssignmentMaster_StudyMaster" Association="Self.FK_UploadAssignmentMaster_StudyMaster">
+            <End Role="StudyMaster" EntitySet="StudyMasters" />
+            <End Role="UploadAssignmentMaster" EntitySet="UploadAssignmentMasters" />
+          </AssociationSet>
+          <EntitySet Name="AdminAssignmentMasters" EntityType="EStudyDBModel.AdminAssignmentMaster" />
+          <EntitySet Name="UploadStudyMaterials" EntityType="EStudyDBModel.UploadStudyMaterial" />
+        </EntityContainer>
+        <EntityType Name="AdminAssignmentMaster">
+          <Key>
+            <PropertyRef Name="Upload_Id" />
+          </Key>
+          <Property Name="Upload_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="FileName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Upload_DT" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UploadStudyMaterial">
+          <Key>
+            <PropertyRef Name="Materail_Id" />
+          </Key>
+          <Property Name="Materail_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="FileName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Upload_DT" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EStudyDBModelStoreContainer" CdmEntityContainer="EStudyDBEntities">
+          <EntitySetMapping Name="EnquiryMasters">
+            <EntityTypeMapping TypeName="EStudyDBModel.EnquiryMaster">
+              <MappingFragment StoreEntitySet="EnquiryMaster">
+                <ScalarProperty Name="Enquiry_Id" ColumnName="Enquiry_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile_No" ColumnName="Mobile_No" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Enquiry_DT" ColumnName="Enquiry_DT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeedbackMasters">
+            <EntityTypeMapping TypeName="EStudyDBModel.FeedbackMaster">
+              <MappingFragment StoreEntitySet="FeedbackMaster">
+                <ScalarProperty Name="Feedback_Id" ColumnName="Feedback_Id" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Feedback_DT" ColumnName="Feedback_DT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginMasters">
+            <EntityTypeMapping TypeName="EStudyDBModel.LoginMaster">
+              <MappingFragment StoreEntitySet="LoginMaster">
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Utype" ColumnName="Utype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationMasters">
+            <EntityTypeMapping TypeName="EStudyDBModel.NotificationMaster">
+              <MappingFragment StoreEntitySet="NotificationMaster">
+                <ScalarProperty Name="Notification_Id" ColumnName="Notification_Id" />
+                <ScalarProperty Name="Noti_Message" ColumnName="Noti_Message" />
+                <ScalarProperty Name="Noti_Dt" ColumnName="Noti_Dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudyMasters">
+            <EntityTypeMapping TypeName="EStudyDBModel.StudyMaster">
+              <MappingFragment StoreEntitySet="StudyMaster">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="CollegeName" ColumnName="CollegeName" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Yearofcourse" ColumnName="Yearofcourse" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="UserPic" ColumnName="UserPic" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Registered_On" ColumnName="Registered_On" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UploadAssignmentMasters">
+            <EntityTypeMapping TypeName="EStudyDBModel.UploadAssignmentMaster">
+              <MappingFragment StoreEntitySet="UploadAssignmentMaster">
+                <ScalarProperty Name="Upload_Id" ColumnName="Upload_Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Upload_DT" ColumnName="Upload_DT" />
+                <ScalarProperty Name="Uploaded_By" ColumnName="Uploaded_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminAssignmentMasters">
+            <EntityTypeMapping TypeName="EStudyDBModel.AdminAssignmentMaster">
+              <MappingFragment StoreEntitySet="AdminAssignmentMaster">
+                <ScalarProperty Name="Upload_DT" ColumnName="Upload_DT" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Upload_Id" ColumnName="Upload_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UploadStudyMaterials">
+            <EntityTypeMapping TypeName="EStudyDBModel.UploadStudyMaterial">
+              <MappingFragment StoreEntitySet="UploadStudyMaterial">
+                <ScalarProperty Name="Upload_DT" ColumnName="Upload_DT" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Materail_Id" ColumnName="Materail_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

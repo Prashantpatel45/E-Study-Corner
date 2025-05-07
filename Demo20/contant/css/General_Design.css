@@ -1,0 +1,105 @@
+﻿/*Home/Index*/
+#mar {
+    font-size:15px;
+}
+#para1 {
+    text-align: center;
+    color: #0288d1;
+    margin-top: 20px;
+}
+#para2 {
+    box-shadow:3px 3px 3px 2px;
+    text-align:justify;
+    padding:10px 15px 5px 15px;
+    font-size:16px;
+    border-radius:60px 0px 60px 0px;
+    margin-top:30px;
+}
+#para3 {
+    margin: 0px 20px;
+}
+#iconlink {
+    color: white;
+}
+/*
+.fixed_notice{
+    position:fixed;
+    left:-20px;
+    z-index:999;
+    top:40%;
+    -ms-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    transform:rotate(90deg);
+}
+    */
+/*Login form*/
+#login1 {
+    background-color: #0dcaf0;
+    border-radius: 30px;
+    box-shadow: 3px 3px 10px 5px;
+    margin-top:20px;
+    min-height:350px;
+    margin-bottom:30px;
+}
+/*logo/navbar*/
+.menu{
+    background:#0288d1;
+}
+.header {
+    background: #0288d1;
+}
+.nav-item{
+    font-size:20px;
+    font-family:blod;
+}
+.main{
+    min-height:450px;
+}
+/*footer*/
+.footer{
+    background:#5f5454;
+    color:white;
+}
+.lastfooter {
+    background: black;
+    color: white;
+    opacity:0.8;
+}
+.textstyle {
+    font-size:18px;
+    text-align: justify;
+}
+/*vision and mission*/
+#vision {
+    border: 1px solid black;
+    text-align: justify;
+    font-size: 17px;
+    border-radius: 100px 0px 100px 0px;
+    padding: 10px 15px 5px 15px;
+    box-shadow: 2px 2px 8px 3px;
+}
+#mission {
+    border: 1px solid black;
+    text-align: justify;
+    font-size: 17px;
+    border-radius: 100px 0px 100px 0px;
+    padding: 10px 15px 5px 15px;
+    box-shadow: 2px 2px 8px 3px;
+}
+/*Benefits*/
+#hov{
+    transition:all 1.5s;
+}
+#hov:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 8px 3px;
+}
+.card-text {
+    text-align: center;
+    font-size: 16px;
+    text-align: justify;
+}
+.card-title {
+    color: #0288d1;
+    font-size: 22px;
+}

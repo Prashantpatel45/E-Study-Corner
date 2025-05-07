@@ -1,0 +1,250 @@
+﻿
+@{
+    ViewBag.Title = "NewStudent";
+    Layout = "~/Views/shared/Common_General_Layout.cshtml";
+}
+<style>
+    .myform div
+    {
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+    .err{
+        color:red;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $("#BtnReferesh").click(function () {
+            $.getJSON("/General/GetNewCaptchaByAJAX", null, function (res) {
+                $("#ImgCaptcha").attr("src", "/contant/Captcha/" + res);
+            });
+        });
+        //Validate terms and Conditions
+        $("#chkterms").change(function () {
+            var x = $(this).prop("checked");
+            if (x == true)
+                $("#btnsave").prop("disabled", false);
+            else
+                $("#btnsave").prop("disabled", true);
+        });
+        //Validate registration form
+        $("#btnsave").click(function () {
+            var name, dob, email, college, course, Yearofcourse, mob, address, picture, pass, cpass, code, res = true;
+            //Reading vlaues of all controls...
+            name = $("#tname").val().trim();
+            dob = $("#tdob").val().trim();
+            email = $("#temail").val().trim();
+            college = $("#tcollege").val().trim();
+            course = $("#dcourse").val().trim();
+            Yearofcourse = $("#dyoc").val().trim();
+            mob = $("#tmob").val().trim();
+            address = $("#taddress").val().trim();
+            picture = $("#pic").val().trim();
+            pass = $("#tpass").val().trim();
+            cpass = $("#tcpass").val().trim();
+            code = $("#tcaptcha").val().trim();
+            //Clear old error
+            $(".err").remove();
+            //validate name
+            if (name.length == 0) {
+                $("#tname").after("<span class='err'>Please enter your name.</span>");
+                res = false;
+            }
+            else if (name.length < 3)
+            {
+                $("#tname").after("<span class='err'>Please enter your valid name.</span>");
+                res = false;
+            }
+            //validate dob
+            if (dob.length == 0) {
+                $("#tdob").after("<span class='err'>Please enter your dob.</span>");
+                res = false;
+            }
+            else if (name.length < 3) {
+                $("#tdob").after("<span class='err'>Please enter your valid dob.</span>");
+                res = false;
+            }
+            //validate name
+            if (college.length == 0) {
+                $("#tcollege").after("<span class='err'>Please enter your collage name.</span>");
+                res = false;
+            }
+            else if (college.length < 3) {
+                $("#tcollege").after("<span class='err'>Please enter your valid collage name.</span>");
+                res = false;
+            }
+            //Validate mobile no
+            if (mob.length == 0) {
+                $("#tmob").after("<span class='err'>Please enter your mobile number.</span>");
+                res = false;
+            }
+            else if (mob.length != 10) {
+                $("#tmob").after("<span class='err'>Mobile number must have exact 10 digits.</span>");
+                res = false;
+            }
+            else
+            {
+                var ascii = mob.charCodeAt(0);
+                if (!(ascii >= 54 && ascii <= 57))
+                {
+                    $("#tmob").after("<span class='err'>Please enter a valid mobile number.</span>");
+                    res = false;
+                }
+            }
+            //validate email id
+            if (email.length == 0)
+            {
+                $("#temail").after("<span class='err'>Please enter your email id.</span>");
+                res = false;
+            }
+            // validate Course 
+            if (course.length == 0)
+            {
+                $("#dcourse").after("<span class='err'>Please enter your course.</span>");
+                res = false;
+            }
+            // validate year of course 
+            if (Yearofcourse.length == 0)
+            {
+                $("#dyoc").after("<span class='err'>Please enter your year.</span>");
+                res = false;
+            }
+            // validate address
+            if (address.length == 0)
+            {
+                $("#taddress").after("<span class='err'>Please enter your address.</span>");
+                res = false;
+            }
+            else
+            {
+                var count = 0, x, ch;
+                for (x = 0; x < address.length; x++)
+                {
+                    ch = address.charAt(x);
+                    if (ch == ' ' || ch == ',' || ch == '-')
+                        count++;
+                }
+                if (count < 3)
+                {
+                    $("#taddress").after("<span class='err'>Please enter your full address.</span>");
+                    res = false;
+                }
+            }
+            //validate picture
+            if (picture.length > 0) {
+                var ext = picture.substrig(picture.lastIndexOf('.')).toUpperCase();
+                if (!(ext == '.JPG' || ext == '.PNG' || ext == '.JPEG'))
+                {
+                    $("#pic").after("<span class='err'>Please choose a valid image file.</span>");
+                    res = false;
+                }
+            }
+            //validate password
+            if (pass.length == 0) {
+                $("#tpass").after("<span class='err'>Please enter your password.</span>");
+                res = false;
+            }
+            else if (pass.length < 5)
+            {
+                $("#tpass").after("<span class='err'>Please must have 5 characters.</span>");
+                res = false;
+            }
+            //validate confirm password
+            if (cpass.length == 0)
+            {
+                $("#tcpass").after("<span class='err'>Please confirm your password.</span>");
+                res = false;
+            }
+            else if (pass != cpass)
+            {
+                $("#tcpass").after("<span class='err'>Password and confirm passwod must be same.</span>");
+                res = false;
+            }
+            //validate captcha
+            if (code.length == 0)
+            {
+                $("#tcaptcha").after("<span class='err'>Please enter your captcha.</span>");
+                res = false;
+            }
+        });
+    });
+</script>
+<div class="row mt-3 mb-3">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8" style="box-shadow: 0 0 15px rgba(0, 0, 0, 1); border-radius: 10px; ">
+        <form action="/General/NewStudent" method="post" enctype="multipart/form-data" />
+        <div class="row myform" style="background-color: #0dcaf0; min-height: 650px; padding-top: 10px; padding-bottom: 20px; border-radius: 10px; ">
+            <h1 class="text-center text-primary">Register Here<hr style="border:1px solid blue" /></h1>
+            <span class="text-center h5 text-danger">@ViewBag.Message</span>
+            <div class="col-sm-6">
+                <input type="text" name="Name" placeholder="Name" class="form-control" id="tname" />
+            </div>
+            <div class="col-sm-6">
+                <input type="date" name="DOB" placeholder="Date
+                       of Birth" class="form-control" id="tdob" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-control">
+                    Gender :-&emsp;&nbsp;
+                    <input type="radio" name="Gender" value="Male" checked="checked" />Male&emsp;
+                    <input type="radio" name="Gender" value="Female" />Female
+                </span>
+            </div>
+            <div class="col-sm-6">
+                <input type="email" name="EmailId" placeholder="Email Id" class="form-control" id="temail" />
+            </div>
+            <div class="col-sm-6">
+                <input type="text" name="CollegeName" placeholder="College Name" class="form-control" id="tcollege" />
+            </div>
+            <div class="col-sm-6">
+                @Html.DropDownList("Course", null, "Course", new { @class = "form-control",id="dcourse" })
+            </div>
+            <div class="col-sm-6">
+                @Html.DropDownList("Yearofcourse", null, "Year of course", new { @class = "form-control",id="dyoc" })
+            </div>
+            <div class="col-sm-6">
+                <input type="number" name="MobileNo" placeholder="Mobile No" class="form-control" id="tmob"/>
+            </div>
+            <div class="col-sm-6">
+                <textarea class="form-control" name="Address" placeholder="Enter your address" rows="1" id="taddress"></textarea>
+            </div>
+            <div class="col-sm-6">
+                <span class="form-control">
+                    Picture:-&nbsp;&nbsp;
+                    <input type="file" name="UserPic" id="pic" />
+                </span>
+            </div>
+
+            <div class="col-sm-6">
+                <input type="password" name="Pass" placeholder="Password" class="form-control" id="tpass" />
+            </div>
+            <div class="col-sm-6">
+                <input type="password" name="ConfPass" placeholder="Confirm Password" class="form-control" id="tcpass" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-control">
+                    <img id="ImgCaptcha" width="80%" height="35px" src="~/contant/Captcha/@ViewBag.CaptchaPicName" />&emsp;
+                    <img id="BtnReferesh" width="45px" height="35px" style="cursor:pointer;" title="Refresh Code"<img src="~/contant/images/refresh button.jpg" />
+                </span>
+            </div>
+            <div class="col-sm-6">
+                <input type="text" name="TxtCaptcha" placeholder="Type captcha code here" class="form-control" id="tcaptcha"/>
+            </div>
+            <div class="col-sm-12">
+                <input type="checkbox" id="chkterms" style="width:15px;height:15px;"/> I agree form terms &  Condition of <b>E-Study Corner</b>
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-3" id="hvr">
+                <input type="submit" value="Submit" class="btn btn-primary" disabled id="btnsave"/>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-3">
+                <input type="reset" value="Reset" class="btn btn-danger">
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+</div>

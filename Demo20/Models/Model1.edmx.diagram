@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7536884bc4b4ba995a9e86dc8772822" Name="Diagram1">
+        <EntityTypeShape EntityType="EStudyDBModel.EnquiryMaster" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EStudyDBModel.FeedbackMaster" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EStudyDBModel.LoginMaster" Width="1.5" PointX="6.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EStudyDBModel.NotificationMaster" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EStudyDBModel.StudyMaster" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EStudyDBModel.UploadAssignmentMaster" Width="2.375" PointX="3.625" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="EStudyDBModel.FK_FeedbackMaster_StudyMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="EStudyDBModel.FK_UploadAssignmentMaster_StudyMaster" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EStudyDBModel.AdminAssignmentMaster" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="EStudyDBModel.UploadStudyMaterial" Width="2.25" PointX="4" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

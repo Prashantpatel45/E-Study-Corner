@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/shared/Common_User_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 mt-5 mb-5"id="feed">
+        <h1 class="card-header text-primary text-center mt-3">Feedback</h1>
+        <p class="text-danger text-center">Please send your valuable feedback</p>
+        <h5 class="text-center text-danger pt-2">@ViewBag.Msg</h5>
+        <form action="/User/Feedback" method="post">
+            <p class="text-danger text-center formmessage"></p>
+            <div class="mb-3">
+                <label for="Title/Topic" class="form-leble">Title</label>
+                <input type="text" class="form-control" id="exampleFromControlInput1" placeholder="Title/Topic of the feedback" name="Topic" />
+            </div>
+            <div class="mb-3">
+                <label for="FeedbackMessage" class="form-leble">Feedback</label>
+                <textarea class="form-control" name="Message" rows="3"placeholder=" Your feedback here...."></textarea>
+            </div>
+            <center><input type="submit" class="btn btn-primary mb-3" style="font-size:18px;width:15%;" /></center>
+        </form>
+    </div>
+    <div class="col-sm-6"></div>
+</div>

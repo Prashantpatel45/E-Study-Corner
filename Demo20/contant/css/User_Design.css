@@ -1,0 +1,34 @@
+﻿/*header*/
+.header {
+    background: #0288d1;
+    color: white;
+}
+/*menu bar*/
+.nav-item {
+    font-size: 20px;
+    padding-left: 20px;
+    font-family: blod;
+}
+.main {
+    min-height: 560px;
+    background: white;
+}
+/*footer*/
+.footer {
+    background: black;
+    color: white;
+}
+/*change password*/
+#cpass {
+    border: 1px solid black;
+    border-radius: 30px;
+    background-color: #0dcaf0;
+    box-shadow: 3px 3px 10px 5px;
+}
+/*feedback*/
+#feed {
+    border: 1px solid black;
+    border-radius: 30px;
+    background-color: #0dcaf0;
+    box-shadow: 3px 3px 10px 5px;
+}

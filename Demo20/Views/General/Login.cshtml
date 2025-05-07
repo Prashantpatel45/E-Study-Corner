@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/shared/Common_General_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-5">
+        <div class="row">
+            <video autoplay loop muted>
+                <source src="~/contant/images/Untitled%20design%20(1).mp4" type="video/mp4" />
+            </video>
+        </div>
+    </div>
+    <div class="col-sm-6 Login" id="login1">
+        <form action="/General/Login" method="post">
+            <h2 class="heading text-center text-primary pb-3 pt-3"> <span>Login Here</span></h2>
+            <input type="email" name="EmailId" class="form-control" placeholder="Enter Email id" id="temail" /><br />
+            <input type="password" name="Pass" class="form-control" placeholder="Enter password" id="tpass" /><br />
+            <select name="Utype" class="form-control" id="utype">
+                <option value="">--Select User Type--</option>
+                <option value="STUDENT">Student</option>
+                <option value="ADMIN">Admin</option>
+            </select><br />
+            <h4 class="text-center  text-danger">@ViewBag.Message</h4>
+            <input id="btnlogin" type="submit" style="color:white;font-family:bold;" value="Login" class="form-control btn btn-success" />
+        </form>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#btnlogin").click(function () {
+            var email, pass, type, res = true;
+            email = $("#temail").val().trim();
+            pass = $("#tpass").val().trim();
+            type = $("#utype").val().trim();
+            //clear all old errors
+            $(".err").remove();
+            //validate email id or user id
+            if (email.length == 0)
+            {
+                $("#temail").after("<span class='err'>Please enter your email id.</span>");
+                res = false;
+            }
+            //validation password
+            if (pass.length == 0)
+            {
+                $("#tpass").after("<span class='err'>Please enter your password.</span>");
+                res = false;
+            }
+            //validate usertype
+            if (type.length == 0)
+            {
+                $("#utype").after("<span class='err'>Please select a user type.</span>");
+                res = false;
+            }
+            return res;
+        });
+    });
+</script>
+<style>
+    .err{
+        color:red;
+    }
+</style>
+

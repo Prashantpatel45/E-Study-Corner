@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/shared/Common_User_Layout.cshtml";
+}
+@using Demo20.Models
+@model StudyMaster
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10 border mt-4 mb-4" style="background-color: #ebf4fa;">
+        <h1 class="text-center text-primary card-header pt-2">MyProfile</h1>
+        <h4 class="text-center text-success pt-2">@ViewBag.Message</h4><hr />
+        <form action="/User/MyProfile" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="mb-3 row">
+                        <label for="EmailId" class="col-sm-2 col-form-label">EmailId</label>
+                        <div class="col-sm-10">
+                            <input type="email" readonly class="form-control-plaintext" id="staticEmailId" value="@Model.EmailId">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="Name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName" value="@Model.Name" name="Name" />
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="Gender" class="col-sm-2 col-form-label">Gender</label>
+                        <div class="col-sm-10">
+                            <span class="form-control">
+                                @if (Model.Gender == "Male")
+                                {
+                                    <span>
+                                        <input type="radio" class="" id="inputRadio" value="Male" name="Gender" checked>Male &emsp;
+                                        <input type="radio" class="" id="inputRadio" value="Female" name="Gender">Female
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        <input type="radio" class="" id="inputRadio" value="Male" name="Gender">Male &emsp;
+                                        <input type="radio" class="" id="inputRadio" value="Female" name="Gender" checked>Female
+                                    </span>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="DOB" class="col-sm-2 col-form-label">DOB</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" name="DOB" placeholder="Date of Birth" value="@Model.DOB" required />
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="CollegeName" class="col-sm-2 col-form-label">CollegeName</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputCollegeName" value="@Model.CollegeName" name="CollegeName" />
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="Course" class="col-sm-2 col-form-label">Course</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("Course", null, "Course", new { @class = "form-control" })
+                        </div>
+                        <div class="col-sm-10">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="Year" class="col-sm-2 col-form-label">Yearofcourse</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("Yearofcourse", null, "Year of course", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="MobileNo" class="col-sm-2 col-form-label">MobileNo</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="inputMobileNo" value="@Model.MobileNo" name="MobileNo" />
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="Address" class="col-sm-2 col-form-label">Address</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" name="Address">@Model.Address</textarea>
+                        </div>
+                    </div>
+                    <input type="submit" value="UpdateProfile" class="btn btn-primary mb-4" />
+                </div>
+                <div class="col-sm-4 mt-2">
+                    <center>
+                        <img src="/Contant/UserPics/@Model.UserPic" style="min-height:150px;width:70%;" class="mt-5" />
+                    </center>
+                    <input type="file" class="form-control" name="UserPic"/>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+

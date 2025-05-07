@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "NotificationManagement";
+    Layout = "~/Views/shared/Common_Admin_Layout.cshtml";
+}
+@using Demo20.Models
+@model IEnumerable<NotificationMaster>
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 border mt-4 mb-4" style="background-color: #ebf4fa">
+        <h2 class="card-header text-primary text-center pt-2">Notification &nbsp;
+            <span class="fa-solid fa-bell text-primary"></span>
+        </h2>
+        <h5 class="text-success text-center pt-2">@ViewBag.Message</h5><hr />
+        <form action="/Admin/NotificationManagement" method="post">
+            <div class="mb-3">
+                <label for="NotificationMessage" class="form-leble">&emsp;Notification:-</label><br /><br />
+                <textarea class="form-control" rows="3" placeholder="Type Notification Message here...." name="Noti_Message"></textarea>
+            </div>
+            <center><input type="submit" value="Save" class="btn btn-primary mt-2 mb-2" style="font-size:18px;width:15%;" /></center>
+        </form>
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+<!---Display Notification--->
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10 border mt-4 mb-4" style="background-color: #ebf4fa">
+        <h3 class="text-center text-primary card-header pt-2">Message Notification</h3><hr />
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Notification Id</th>
+                <th>Notification Text</th>
+                <th>Notification On</th>
+                <th class="text-center">Delete</th>
+            </tr>
+            @{
+                foreach(NotificationMaster nm in Model)
+                {
+                    <tr>
+                        <td>@nm.Notification_Id</td>
+                        <td>@nm.Noti_Message</td>
+                        <td>@nm.Noti_Dt</td>
+                        <td>
+                            <span class="del text-decoration-line-through fa-solid fa-trash-can text-danger" title="Delete" style="cursor:pointer;"></span>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".del").click(function () {
+            var r = $(this).parents("tr");
+            var nid=r.find("td").first().text().trim();
+            var obj = { NID: nid };
+            //AJAX calling
+            $.getJSON("/Admin/DeleteNoti", obj, function (res) {
+                if (res == "SUCCESS")
+                {
+                    alert("Notification deleted successfully.");
+                    r.slideUp(1200);
+                }
+                else
+                {
+                    alert("Sorry! unable to delete notification.")
+                }
+            });
+        });
+    });
+</script>
+
